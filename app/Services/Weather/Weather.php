@@ -23,6 +23,8 @@ class Weather
      */
     public function getStyles()
     {
+        if (!$this->dom) return '';
+
         $stylesArray = $this->dom->find('script[type="style"]');
 
         $styles = '<style>';
@@ -41,6 +43,8 @@ class Weather
      */
     public function getHtml()
     {
+        if (!$this->dom) return '<h1>Weather did not parsed</h1>';
+
         $tab = $this->dom->find('.forecast_frame.hw_wrap .tabs div.tab')[0]->outertext;
         $tab = '<div class="tabs _center">'.$tab.'</div>';
 
