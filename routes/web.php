@@ -19,5 +19,5 @@ Route::post('/feedback/create', 'CreateFeedbackController@create')->name('feedba
 
 Route::middleware('auth')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
-
+    Route::get('/feedback-list', 'ListFeedbackController@index')->name('feedback.list');
 });
