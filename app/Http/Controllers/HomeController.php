@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Weather\Weather;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -17,12 +18,16 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Show weather.
      *
+     * @param Weather $weather
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Weather $weather)
     {
-        return view('home');
+        $weatherHtml = $weather->getHtml();
+        $weatherStyles = $weather->getStyles();
+
+        return view('home', compact(['weatherHtml', 'weatherStyles']));
     }
 }
