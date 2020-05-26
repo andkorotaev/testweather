@@ -14,4 +14,10 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/feedback', 'CreateFeedbackController@index')->name('feedback');
+Route::post('/feedback/create', 'CreateFeedbackController@create')->name('feedback.create');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/', 'HomeController@index')->name('home');
+
+});
